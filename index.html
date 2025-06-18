@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Daniel Jaime Camacho - Portafolio Profesional</title>
+    <!-- Carga la CDN de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga la fuente Inter desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Carga Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Define la fuente Inter para todo el body */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Fondo gris claro */
+            color: #1f2937; /* Texto principal oscuro */
+            line-height: 1.6;
+        }
+        /* Estilos para el scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilo para el modal */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Posición fija para cubrir toda la pantalla */
+            z-index: 1000; /* Por encima de todo lo demás */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Habilitar scroll si el contenido es demasiado grande */
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente oscuro */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #ffffff;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-height: 90vh; /* Limita la altura del modal */
+            overflow-y: auto; /* Permite scroll dentro del modal si el contenido es largo */
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        .loading-indicator.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Barra de Navegación -->
+    <nav class="bg-gray-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-center space-x-6 md:space-x-12">
+            <a href="#top" class="hover:text-blue-400 transition-colors duration-300 font-semibold text-lg md:text-xl px-3 py-1 rounded-full hover:bg-blue-800">Inicio</a>
+            <a href="#projects" class="hover:text-blue-400 transition-colors duration-300 font-semibold text-lg md:text-xl px-3 py-1 rounded-full hover:bg-blue-800">Proyectos</a>
+            <a href="#about" class="hover:text-blue-400 transition-colors duration-300 font-semibold text-lg md:text-xl px-3 py-1 rounded-full hover:bg-blue-800">Sobre Mí</a>
+            <a href="#contact" class="hover:text-blue-400 transition-colors duration-300 font-semibold text-lg md:text-xl px-3 py-1 rounded-full hover:bg-blue-800">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Encabezado / Sección Héroe (se le añadió un ID para el scroll) -->
+    <header id="top" class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 px-4 md:px-8 shadow-lg rounded-b-2xl">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+            <div class="mb-8 md:mb-0 md:mr-8">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-2 leading-tight">Carlos Daniel Jaime Camacho</h1>
+                <p class="text-2xl md:text-3xl font-light opacity-90">Estudiante de Ingeniería en Sistemas Computacionales</p>
+                <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto md:mx-0">Versátil, adaptable y con interés en desarrollarme profesionalmente en el área tecnológica.</p>
+            </div>
+            <!-- Imagen de perfil profesional (opcional) -->
+            <div class="flex-shrink-0">
+                <img src="https://i.imgur.com/RXAw2Dk.jpeg" alt="Imagen de Perfil Profesional de Carlos Daniel Jaime Camacho" class="w-56 h-56 md:w-64 md:h-64 rounded-full border-4 border-white shadow-xl object-cover">
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto my-12 px-4 md:px-8">
+        <!-- Sección de Proyectos / Galería de Trabajos -->
+        <section id="projects" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-10 text-blue-900">Experiencia y Proyectos Destacados</h2>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Los proyectos se renderizarán aquí con JavaScript -->
+            </div>
+        </section>
+
+        <!-- Sección "Acerca de Mí" -->
+        <section id="about" class="bg-white p-8 rounded-xl shadow-md mb-16">
+            <h2 class="text-4xl font-bold text-center mb-6 text-blue-900">Acerca de Mí</h2>
+            <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+                Estudiante de Ingeniería en Sistemas Computacionales con experiencia en el área industrial. Me destaco por mi puntualidad, constancia y dominio de herramientas técnicas esenciales. Versátil, adaptable y con interés en desarrollarme profesionalmente en el área tecnológica.
+            </p>
+            <div class="mt-8 text-center">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Habilidades Clave:</h3>
+                <ul class="flex flex-wrap justify-center gap-4 text-lg text-blue-800 font-medium">
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Responsabilidad y constancia</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Comunicación asertiva</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Resolución de problemas</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Trabajo en equipo</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Aprendizaje continuo</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Flexibilidad</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Programación y bases de datos</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Programación de circuitos electrónicos</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Sistemas</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Mantenimiento preventivo y correctivo</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Análisis de sistemas operativos (macOS, Windows)</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Diseño y arquitectura de computadoras</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">SQL Server (DML, DDL, SELECT)</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Especificación de Requisitos de Software (SRS)</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Gestión de proyectos de software</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">WordPress</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Diseño y simulación de circuitos</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Microcontroladores (Arduino)</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Programación Estructurada</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">C++</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">HTML</li>
+                    <li class="bg-blue-200 px-4 py-2 rounded-full shadow-sm">Python</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página / Sección de Contacto -->
+    <footer id="contact" class="bg-gray-800 text-white py-12 px-4 md:px-8 rounded-t-2xl">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6">Contacta Conmigo</h2>
+            <p class="text-lg mb-6">Estoy abierto a nuevas oportunidades y colaboraciones. ¡Hablemos!</p>
+            <div class="flex flex-wrap justify-center gap-6 mb-8">
+                <a href="mailto:Danielazo_13@live.com" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-envelope mr-2"></i> Danielazo_13@live.com
+                </a>
+                <a href="tel:+524931708100" class="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-phone-alt mr-2"></i> 493 170 8100
+                </a>
+                <a href="https://www.linkedin.com/in/carlos-daniel-jaime-camacho-978479370" target="_blank" rel="noopener noreferrer" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 flex items-center justify-center">
+                    <i class="fab fa-linkedin-in mr-2"></i> LinkedIn
+                </a>
+            </div>
+            <p class="text-sm text-gray-400">&copy; 2024 Carlos Daniel Jaime Camacho. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para detalles del proyecto -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-title" class="text-3xl font-bold mb-4 text-blue-900"></h3>
+            <img id="modal-image" src="" alt="Imagen del proyecto" class="w-full h-auto rounded-lg mb-6 object-cover max-h-80">
+            <p id="modal-description" class="text-lg text-gray-700 leading-relaxed"></p>
+            <button id="enhanceDescriptionBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                ✨ Mejorar Descripción
+            </button>
+            <div id="loadingIndicator" class="loading-indicator">Generando descripción...</div>
+        </div>
+    </div>
+
+    <script>
+        // Modelo de Datos Emulado del Portafolio
+        // Este array simula una base de datos de tus proyectos y experiencias.
+        const projects = [
+            // Experiencias de APTIV (ordenadas cronológicamente de más reciente a más antigua)
+            {
+                id: 3,
+                title: "Técnico de Mantenimiento (APTIV) (2025 - Actualidad)",
+                briefDescription: "Brindando servicio de mantenimiento en el área Lead Prep, solucionando problemas complejos.",
+                fullDescription: "Actualmente me desempeño como Técnico de Mantenimiento en APTIV Contract Services Zacatecas, en el área Lead Prep, donde soy el encargado de brindar servicio de mantenimiento, solucionando problemas mecánicos, electromecánicos, eléctricos, electrónicos, hidráulicos, entre otros. Poseo habilidad en el manejo de herramientas esenciales como llaves, pinzas, multímetro, cautín, lo que me permite abordar una amplia gama de incidencias técnicas de manera eficiente y proactiva.",
+                imageUrl: "https://i.imgur.com/jXjzpq9.jpeg", // Imagen personalizada
+                link: "#"
+            },
+            {
+                id: 6,
+                title: "Operador de Mantenimiento - Centro de Dados (APTIV) (2023-2025)",
+                briefDescription: "Responsable del mantenimiento y gestión en el área de Centro de Dados en un entorno industrial.",
+                fullDescription: "Como Operador de Mantenimiento en APTIV Contract Services Zacatecas (2023-2025), fui responsable del mantenimiento y la gestión en el área de Centro de Dados. Esta experiencia implicó un apoyo crucial en diversas áreas de la planta, permitiéndome adquirir habilidades técnicas y sociales significativas, y desarrollar una gran adaptabilidad a tareas variadas en entornos industriales complejos. Demuestra mi compromiso con la constancia y la responsabilidad en entornos de alta demanda.",
+                imageUrl: "https://i.imgur.com/K3q6aVC.jpeg", // Imagen personalizada
+                link: "#"
+            },
+            {
+                id: 7,
+                title: "Operador del Tablero de Inspección (APTIV) (2018-2023)",
+                briefDescription: "Supervisión de la calidad del producto final en línea de producción.",
+                fullDescription: "Durante mi rol como Operador del Tablero de Inspección en APTIV Contract Services Zacatecas (2018-2023), mi principal responsabilidad fue la supervisión de la calidad del producto final en línea de producción. Aseguré que los estándares del cliente se cumplieran o superaran, trabajando con un enfoque constante en la calidad, la precisión y la mejora continua. Esta experiencia subraya mi atención al detalle y mi dedicación a la excelencia operativa.",
+                imageUrl: "https://i.imgur.com/DZFDJkN.jpeg", // Imagen personalizada
+                link: "#"
+            },
+            // Resto de experiencias (manteniendo el orden previo entre ellas)
+            {
+                id: 1,
+                title: "Habilidad en Programación Estructurada y Multilenguaje",
+                briefDescription: "Dominio en la programación estructurada utilizando lenguajes como C++, HTML y Python.",
+                fullDescription: "Poseo una sólida habilidad en programación estructurada, aplicando estos principios en el desarrollo de soluciones con diversos lenguajes. Mi experiencia abarca el uso de C++ para aplicaciones de alto rendimiento, HTML para la estructuración de contenido web, y Python para scripting, automatización y desarrollo de aplicaciones. Esta versatilidad me permite adaptarme a distintos requisitos de proyecto y paradigmas de programación, construyendo código robusto, legible y eficiente.",
+                imageUrl: "https://i.imgur.com/aEc6IJf.jpeg", // Imagen personalizada
+                link: "#"
+            },
+            {
+                id: 2,
+                title: "Diseño y Prototipado con Arduino y Electrónica",
+                briefDescription: "Experiencia práctica en el análisis y simulación de circuitos, y desarrollo de prototipos con Arduino.",
+                fullDescription: "A través de mi participación destacada en el curso 'Análisis de circuitos eléctricos en corriente directa' y proyectos prácticos, he desarrollado sólidas habilidades en el diseño y prototipado con Arduino y diversos componentes electrónicos. Mi experiencia abarca desde el análisis teórico y la simulación de circuitos hasta la implementación física y depuración de prototipos. Esto me permite abordar proyectos que integran hardware y software, demostrando una comprensión profunda de la electrónica aplicada y los microcontroladores.",
+                imageUrl: "https://i.imgur.com/sr96mZA.jpeg", // Imagen personalizada
+                link: "#"
+            },
+            {
+                id: 4,
+                title: "Proyecto 'Renta Rural' (SRS)",
+                briefDescription: "Especificación de Requisitos de Software para una plataforma de alquiler de viviendas rurales.",
+                fullDescription: "Participé en la elaboración de la Especificación de Requisitos de Software (SRS) para 'Renta Rural', una plataforma web diseñada para facilitar el alquiler de alojamientos temporales a jornaleros agrícolas. Este proyecto me permitió profundizar en el análisis de necesidades del usuario, la definición de requisitos funcionales y no funcionales, y la arquitectura de soluciones web (mobile-first, WordPress). Demuestra mi capacidad para documentar y planificar proyectos de software, enfocándome en la usabilidad y la accesibilidad para usuarios con diferentes niveles de alfabetización digital.",
+                imageUrl: "https://i.imgur.com/cJR6t0V.png", // Imagen personalizada
+                link: "#"
+            },
+            {
+                id: 5,
+                title: "Práctica de Mantenimiento y Análisis de Computadoras",
+                briefDescription: "Análisis de hardware, mantenimiento preventivo/correctivo y exploración de sistemas operativos (Windows/macOS).",
+                fullDescription: "Realicé un análisis exhaustivo de la arquitectura de una computadora, incluyendo la detección de puertos y componentes internos principales. Llevé a cabo mantenimiento preventivo (limpieza profunda) y correctivo (reinstalación de sistema operativo, resolución de problemas de arranque) en un CPU HP. Además, comparé las características y usabilidad de Windows y macOS. Esta práctica solidificó mis habilidades en diagnóstico de hardware, optimización de sistemas y gestión de entornos operativos diversos.",
+                imageUrl: "https://i.imgur.com/1MEXkUA.jpeg", // Imagen personalizada
+                link: "#"
+            },
+            {
+                id: 8,
+                title: "Gestión de Bases de Datos con SQL Server (Ecommerce)",
+                briefDescription: "Diseño y manipulación de bases de datos relacionales para un sistema de E-commerce utilizando SQL Server.",
+                fullDescription: "Desarrollé una base de datos completa para un sistema de E-commerce en SQL Server, incluyendo el diseño de tablas, relaciones y la implementación de restricciones. Realicé ejercicios exhaustivos de Data Manipulation Language (DML) para insertar, actualizar y eliminar datos, y de Data Definition Language (DDL) para la creación y modificación de esquemas. También apliqué diversas consultas SELECT, incluyendo DISTINCT, WHERE, subconsultas y agregaciones. Este proyecto demuestra mi dominio en el modelado y gestión de bases de datos relacionales.",
+                imageUrl: "https://i.imgur.com/J6VVTGO.png", // Imagen personalizada
+                link: "#"
+            }
+        ];
+
+        // Obtener referencias a elementos del DOM para el modal
+        const projectsContainer = document.getElementById('projects-container');
+        const projectModal = document.getElementById('projectModal');
+        const closeButton = projectModal.querySelector('.close-button');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalDescription = document.getElementById('modal-description');
+        const enhanceDescriptionBtn = document.getElementById('enhanceDescriptionBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        let currentProject = null; // Variable para almacenar el proyecto actualmente abierto en el modal
+
+        /**
+         * Abre el modal con los detalles de un proyecto específico.
+         * @param {Object} project - El objeto del proyecto a mostrar en el modal.
+         */
+        function openProjectModal(project) {
+            currentProject = project; // Guarda el proyecto actual
+            modalTitle.textContent = project.title;
+            modalImage.src = project.imageUrl;
+            modalImage.alt = `Imagen del proyecto: ${project.title}`;
+            modalDescription.textContent = project.fullDescription;
+            loadingIndicator.classList.remove('active'); // Oculta el indicador de carga al abrir el modal
+            projectModal.style.display = 'flex'; // Muestra el modal con flex para centrar
+        }
+
+        /**
+         * Cierra el modal de detalles del proyecto.
+         */
+        function closeProjectModal() {
+            projectModal.style.display = 'none';
+            currentProject = null; // Limpia el proyecto actual
+        }
+
+        /**
+         * Llama a la API de Gemini para mejorar la descripción del proyecto.
+         */
+        async function enhanceProjectDescription() {
+            if (!currentProject) return;
+
+            loadingIndicator.classList.add('active'); // Muestra el indicador de carga
+            enhanceDescriptionBtn.disabled = true; // Deshabilita el botón mientras carga
+
+            const prompt = `Expande y mejora la siguiente descripción de proyecto, haciéndola más detallada y profesional, destacando habilidades técnicas e impacto. Enfócate en un tono que sería adecuado para un portafolio profesional de ingeniería/mantenimiento.
+
+            Título del Proyecto: "${currentProject.title}"
+            Descripción Breve Original: "${currentProject.briefDescription}"
+            Descripción Completa Original: "${currentProject.fullDescription}"
+
+            Genera una nueva descripción completa que sea al menos 200 palabras, integrando ambos textos si es necesario, y añadiendo elementos profesionales.`;
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas automáticamente proporcionará la clave API
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const enhancedText = result.candidates[0].content.parts[0].text;
+                    modalDescription.textContent = enhancedText; // Actualiza la descripción en el modal
+                } else {
+                    console.error("Error: Estructura de respuesta inesperada o contenido faltante.");
+                    modalDescription.textContent = "Lo siento, no pude mejorar la descripción en este momento. Intenta de nuevo más tarde.";
+                }
+            } catch (error) {
+                console.error("Error al llamar a la API de Gemini:", error);
+                modalDescription.textContent = "Hubo un error al comunicarse con el servicio de mejora de descripción. Por favor, revisa tu conexión o inténtalo más tarde.";
+            } finally {
+                loadingIndicator.classList.remove('active'); // Oculta el indicador de carga
+                enhanceDescriptionBtn.disabled = false; // Habilita el botón
+            }
+        }
+
+
+        // --- Manejo de Eventos ---
+
+        // Event listener para el botón de cerrar del modal
+        closeButton.addEventListener('click', closeProjectModal);
+
+        // Cierra el modal si se hace clic fuera de su contenido
+        window.addEventListener('click', (event) => {
+            if (event.target === projectModal) {
+                closeProjectModal();
+            }
+        });
+
+        // Event listener para el botón "Mejorar Descripción"
+        enhanceDescriptionBtn.addEventListener('click', enhanceProjectDescription);
+
+
+        /**
+         * Renderiza dinámicamente los proyectos en la galería.
+         * Itera sobre el array `projects` y crea elementos HTML para cada uno.
+         */
+        function renderProjects() {
+            // Limpia el contenedor de proyectos antes de renderizar para evitar duplicados
+            projectsContainer.innerHTML = '';
+
+            // Itera sobre cada proyecto en el array
+            projects.forEach(project => {
+                // Crea el div principal para la tarjeta del proyecto
+                const projectCard = document.createElement('div');
+                projectCard.className = 'bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer transform hover:scale-105'; // Añade clases Tailwind
+
+                // Establece el HTML interno de la tarjeta del proyecto
+                projectCard.innerHTML = `
+                    <img src="${project.imageUrl}" alt="Miniatura del proyecto ${project.title}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">${project.title}</h3>
+                        <p class="text-gray-600 text-base mb-4">${project.briefDescription}</p>
+                        <button class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                            Ver más
+                        </button>
+                    </div>
+                `;
+
+                // Añade un event listener al botón "Ver más" de cada tarjeta de proyecto
+                const viewMoreButton = projectCard.querySelector('button');
+                viewMoreButton.addEventListener('click', () => {
+                    openProjectModal(project); // Abre el modal con los detalles de este proyecto
+                });
+
+                // Añade la tarjeta de proyecto al contenedor principal
+                projectsContainer.appendChild(projectCard);
+            });
+        }
+
+        // Ejecuta la función de renderizado de proyectos una vez que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', renderProjects);
+    </script>
+</body>
+</html>

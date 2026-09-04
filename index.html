@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth dark"> <!-- Se inicia en modo oscuro por defecto -->
+<html lang="es" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carlos Daniel Jaime Camacho - Integrador Tecnológico</title>
+    
+    <!-- Favicon / Logo de la pestaña del navegador -->
+    <link rel="icon" type="image/jpeg" href="Foto%20Perfil.jpeg">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
-            darkMode: 'class', // Habilitar modo oscuro mediante clases
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
@@ -25,7 +29,6 @@
     <style>
         body { transition: background-color 0.3s ease, color 0.3s ease; overflow-x: hidden; }
         
-        /* Glassmorphism Responsivo al Tema */
         .glass-nav {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
@@ -37,7 +40,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* Efecto de tarjetas */
         .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .card-hover:hover {
             transform: translateY(-8px);
@@ -45,7 +47,6 @@
             border-color: rgba(34, 211, 238, 0.4);
         }
         
-        /* Gradiente de texto */
         .text-gradient {
             background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
             -webkit-background-clip: text;
@@ -57,7 +58,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Modal y Fondo Oscuro/Claro */
         .modal {
             display: none; position: fixed; z-index: 1000; inset: 0;
             background-color: rgba(15, 23, 42, 0.4);
@@ -83,7 +83,6 @@
         .modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .dark .modal-content::-webkit-scrollbar-thumb { background: #334155; }
 
-        /* Animaciones Scroll */
         .reveal {
             opacity: 0; transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
@@ -101,16 +100,13 @@
 </head>
 <body class="antialiased bg-slate-50 text-slate-900 dark:bg-darker dark:text-slate-50 selection:bg-cyan-500 selection:text-white transition-colors duration-300">
 
-    <!-- Fondos dinámicos Claro/Oscuro -->
     <div class="fixed inset-0 z-[-1] bg-slate-100 dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-slate-900 dark:via-[#020617] dark:to-[#020617] transition-colors duration-500"></div>
     <div class="fixed top-0 left-0 w-full h-full z-[-1] hidden dark:block bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
 
-    <!-- Navegación y Menú Responsivo -->
     <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#top" class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">CD<span class="text-cyan-600 dark:text-cyan-400">JC</span></a>
             
-            <!-- Menú de Escritorio -->
             <ul class="hidden md:flex space-x-8 text-sm font-medium text-slate-600 dark:text-slate-300 items-center">
                 <li><a href="#experience" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Experiencia</a></li>
                 <li><a href="#projects" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Proyectos</a></li>
@@ -118,22 +114,18 @@
                 <li><a href="#contact" class="px-5 py-2.5 bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-500/30 rounded-full hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-darker transition-colors shadow-sm">Contactar</a></li>
             </ul>
 
-            <!-- Controles Móviles y Botón de Tema -->
             <div class="flex items-center gap-4">
-                <!-- Botón Modo Claro/Oscuro -->
                 <button id="theme-toggle" type="button" class="text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full text-sm p-2.5 transition-colors focus:outline-none">
                     <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
                     <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-lg"></i>
                 </button>
 
-                <!-- Botón de Menú Hamburguesa (Solo Móvil) -->
                 <button id="mobile-menu-btn" type="button" class="md:hidden text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg text-sm p-2.5 transition-colors focus:outline-none">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Menú Desplegable Móvil -->
         <div id="mobile-menu" class="hidden md:hidden glass-nav flex-col px-6 py-6 space-y-4 shadow-xl border-t border-slate-200 dark:border-slate-800">
             <a href="#experience" class="block text-base text-slate-700 dark:text-slate-300 font-medium hover:text-cyan-600 dark:hover:text-cyan-400 mobile-link">Experiencia</a>
             <a href="#projects" class="block text-base text-slate-700 dark:text-slate-300 font-medium hover:text-cyan-600 dark:hover:text-cyan-400 mobile-link">Proyectos</a>
@@ -240,7 +232,6 @@
         </div>
     </footer>
 
-    <!-- Modal Dinámico Rediseñado adaptativo al Tema -->
     <div id="itemModal" class="modal">
         <div class="modal-content relative flex flex-col">
             <button class="absolute top-4 right-4 z-50 w-10 h-10 bg-white/80 dark:bg-slate-900/80 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors border border-slate-200 dark:border-slate-700 backdrop-blur-sm shadow-sm" id="closeModalBtn">
@@ -261,12 +252,10 @@
     </div>
 
     <script>
-        // Configuración Modo Oscuro/Claro Script
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const themeToggleBtn = document.getElementById('theme-toggle');
         
-        // Verifica preferencia en LocalStorage o Sistema
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             themeToggleLightIcon.classList.remove('hidden');
             document.documentElement.classList.add('dark');
@@ -297,7 +286,6 @@
             }
         });
 
-        // Configuración Menú Móvil
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -307,7 +295,6 @@
             mobileMenu.classList.toggle('flex');
         });
 
-        // Cierra el menú al hacer clic en una opción
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -315,7 +302,6 @@
             });
         });
 
-        // Datos del Portafolio
         const experiences = [
             {
                 title: "Técnico de Mantenimiento",
@@ -352,7 +338,7 @@
                 date: "Proyecto Integrador • 2025",
                 briefDescription: "Plataforma de alerta para líneas de producción integrando ESP32, Firebase y arquitectura móvil.",
                 fullDescription: "El Sistema MIRA (Mitigación Industrial Rápida y Avanzada) fue diseñado para monitorear paros de emergencia en tiempo real. Integré microcontroladores ESP32 estructurando la lógica de recolección de datos en C++. Orquesté una aplicación móvil en Android Studio (HTML/CSS/JS) y enlacé la infraestructura usando Firebase para la sincronización de bases de datos. Utilicé Inteligencia Artificial como herramienta principal para la sintaxis y depuración de todo el código.",
-                imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                imageUrl: "Aplicación MIRA.jpeg",
                 videoUrl: "Aplicación MIRA.mp4",
                 tags: ["ESP32 / C++", "Firebase", "App Móvil", "Integración IA"]
             },

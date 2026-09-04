@@ -70,10 +70,9 @@
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* Contenedor de Video Responsivo */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             width: 100%;
@@ -126,7 +125,8 @@
             </div>
             <div class="flex-shrink-0 relative">
                 <div class="absolute inset-0 bg-cyan-500/20 rounded-full blur-3xl scale-150 animate-pulse"></div>
-                <img src="https://i.imgur.com/RXAw2Dk.jpeg" alt="Carlos Daniel" class="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-4 border-slate-800 object-cover shadow-2xl z-10">
+                <!-- Se ha modificado el src para cargar tu foto de perfil desde GitHub -->
+                <img src="Foto%20Perfil.jpeg" alt="Carlos Daniel" class="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-4 border-slate-800 object-cover shadow-2xl z-10 bg-slate-900">
             </div>
         </div>
     </header>
@@ -206,7 +206,6 @@
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             
-            <!-- Contenedor Multimedia Dinámico (Video o Imagen) -->
             <div id="modal-media" class="w-full relative overflow-hidden shrink-0 rounded-t-3xl border-b border-slate-800 bg-black">
                 <!-- Se inyecta por JS -->
             </div>
@@ -227,7 +226,8 @@
                 date: "Versigent • 2025 - Presente",
                 briefDescription: "Diagnóstico lógico preventivo y correctivo en el área Lead Prep, solucionando problemas complejos bajo presión.",
                 fullDescription: "Actualmente me desempeño como Técnico de Mantenimiento en Versigent (área Lead Prep). Soy el encargado de garantizar la continuidad operativa de maquinaria industrial especializada mediante diagnósticos lógicos exhaustivos. Ejecuto rutinas preventivas y aplico troubleshooting avanzado para solucionar fallas críticas que involucran sistemas mecánicos, eléctricos, electrónicos, neumáticos e hidráulicos en entornos de manufactura de alto volumen.",
-                imageUrl: "https://i.imgur.com/jXjzpq9.jpeg",
+                imageUrl: "Tecnico de Mantenimiento.jpeg",
+                videoUrl: "Tecnico de Mantenimiento.mp4",
                 tags: ["Troubleshooting", "Sistemas Electromecánicos", "Trabajo bajo presión"]
             },
             {
@@ -245,6 +245,7 @@
                 briefDescription: "Supervisión de calidad del producto final y aplicación de disciplina operativa en líneas de producción.",
                 fullDescription: "Mi rol se centró en la supervisión de calidad y el cumplimiento estricto de los estándares del cliente final. Esta etapa forjó mi disciplina, atención meticulosa a los detalles y capacidad de trabajo en equipo, lo que me permitió asegurar promociones internas de manera sostenida.",
                 imageUrl: "https://i.imgur.com/DZFDJkN.jpeg",
+                videoUrl: "Operador de manufactura.mp4",
                 tags: ["Control de Calidad", "Disciplina Operativa", "Trabajo en Equipo"]
             }
         ];
@@ -265,6 +266,7 @@
                 briefDescription: "Orquestación de código estructurado guiando de manera experta a motores de Inteligencia Artificial.",
                 fullDescription: "Mi enfoque tecnológico no reside en la escritura manual de líneas de código, sino en el rol de Arquitecto Lógico. Domino el arte del Prompt Engineering para guiar a modelos de IA en la generación y depuración de soluciones web y de software. Esto asegura un desarrollo acelerado y me permite enfocar mi experiencia analítica exclusivamente en diseñar una estructura que resuelva la problemática raíz.",
                 imageUrl: "https://i.imgur.com/aEc6IJf.jpeg",
+                videoUrl: "",
                 tags: ["Prompt Engineering", "Lógica Estructural", "Low-Code"]
             },
             {
@@ -296,10 +298,10 @@
                 const videoIcon = item.videoUrl ? `<div class="absolute inset-0 flex justify-center items-center z-20"><div class="bg-cyan-500/80 text-white rounded-full w-12 h-12 flex justify-center items-center backdrop-blur-sm"><i class="fa-solid fa-play ml-1"></i></div></div>` : '';
 
                 card.innerHTML = `
-                    <div class="h-48 overflow-hidden relative border-b border-slate-800">
+                    <div class="h-48 overflow-hidden relative border-b border-slate-800 bg-slate-900">
                         <div class="absolute inset-0 bg-[#0B1120]/40 z-10 transition-colors group-hover:bg-transparent"></div>
                         ${videoIcon}
-                        <img src="${item.imageUrl}" class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110">
+                        <img src="${encodeURI(item.imageUrl)}" class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110">
                     </div>
                     <div class="p-6 flex flex-col flex-grow relative">
                         <div class="text-cyan-500 text-xs font-bold tracking-wider uppercase mb-2">${item.date}</div>
@@ -322,7 +324,6 @@
             
             mediaContainer.innerHTML = '';
             if (item.videoUrl && item.videoUrl.trim() !== '') {
-                // Video MP4 alojado localmente en Github (con encodeURI para evitar problemas con espacios/acentos)
                 mediaContainer.innerHTML = `
                     <div class="video-container">
                         <video controls style="width: 100%; height: 100%; object-fit: contain;">
@@ -332,8 +333,8 @@
                     </div>`;
             } else {
                 mediaContainer.innerHTML = `
-                    <div class="w-full h-64 sm:h-80 relative">
-                        <img src="${item.imageUrl}" alt="Detalle" class="w-full h-full object-cover">
+                    <div class="w-full h-64 sm:h-80 relative bg-slate-900">
+                        <img src="${encodeURI(item.imageUrl)}" alt="Detalle" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent opacity-90"></div>
                     </div>`;
             }

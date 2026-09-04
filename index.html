@@ -38,7 +38,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Modal oscuro */
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0;
             width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85);
@@ -53,25 +52,19 @@
         }
         .modal-content::-webkit-scrollbar { width: 8px; }
         .modal-content::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        .loader {
-            border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid #22d3ee;
-            border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white relative">
 
-    <!-- Fondo con patrón de puntos estilo tecnológico -->
     <div class="fixed inset-0 z-[-1] bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
 
     <!-- Menú Flotante Glassmorphism -->
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass-nav rounded-full px-6 py-3 shadow-lg shadow-black/50">
         <ul class="flex space-x-6 md:space-x-10 text-sm md:text-base font-medium text-slate-300">
             <li><a href="#top" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-house"></i> <span class="hidden md:inline">Inicio</span></a></li>
+            <li><a href="#experience" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-briefcase"></i> <span class="hidden md:inline">Experiencia</span></a></li>
             <li><a href="#projects" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-microchip"></i> <span class="hidden md:inline">Proyectos</span></a></li>
             <li><a href="#about" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-user-astronaut"></i> <span class="hidden md:inline">Perfil</span></a></li>
-            <li><a href="#contact" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-envelope"></i> <span class="hidden md:inline">Contacto</span></a></li>
         </ul>
     </nav>
 
@@ -109,14 +102,26 @@
     </header>
 
     <main class="container mx-auto px-4 md:px-8 max-w-7xl">
+        
+        <!-- Experiencia Laboral -->
+        <section id="experience" class="py-20 border-t border-slate-800">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Experiencia <span class="text-cyan-400">Laboral</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Trayectoria industrial enfocada en diagnóstico lógico, resolución de problemas bajo presión y optimización operativa.</p>
+            </div>
+            <div id="experience-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Inyectado por JS -->
+            </div>
+        </section>
+
         <!-- Proyectos -->
         <section id="projects" class="py-20 border-t border-slate-800">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Arquitectura y <span class="text-cyan-400">Proyectos</span></h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Soluciones integrales combinando hardware embebido, plataformas web y diagnóstico lógico industrial.</p>
+                <p class="text-slate-400 max-w-2xl mx-auto">Soluciones integrales combinando hardware embebido, plataformas móviles y diseño lógico estructurado.</p>
             </div>
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Proyectos inyectados por JS -->
+                <!-- Inyectado por JS -->
             </div>
         </section>
 
@@ -126,28 +131,26 @@
                 <div class="lg:w-1/2">
                     <h2 class="text-4xl md:text-5xl font-bold mb-6">Sobre <span class="text-cyan-400">Mí</span></h2>
                     <p class="text-lg text-slate-300 leading-relaxed mb-6">
-                        Ingeniero en Sistemas Computacionales con casi ocho años de experiencia técnica en el sector industrial, donde desarrollé una capacidad analítica excepcional para el diagnóstico lógico y la resolución de problemas bajo presión. 
+                        Ingeniero en Sistemas Computacionales con casi ocho años de experiencia técnica en el sector industrial, donde desarrollé una capacidad analítica excepcional para el diagnóstico lógico y la resolución de problemas críticos en entornos de alta exigencia.
                     </p>
                     <p class="text-lg text-slate-400 leading-relaxed">
-                        Me especializo en la arquitectura de sistemas y la integración de tecnologías (hardware IoT, web, bases de datos). Utilizo metodologías Low-Code y herramientas de Inteligencia Artificial para la orquestación y generación de código, enfocándome en el diseño estructural.
+                        Me especializo en la arquitectura de sistemas y la integración de tecnologías (hardware IoT, web, bases de datos). Utilizo metodologías Low-Code y herramientas de Inteligencia Artificial para la orquestación y generación de código, permitiéndome enfocar el 100% de mi esfuerzo en el diseño estructural y la conexión de la infraestructura tecnológica para resolver problemáticas operativas reales.
                     </p>
                 </div>
                 <div class="lg:w-1/2 w-full">
                     <div class="bg-dark p-8 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
-                        <!-- Brillo de fondo -->
                         <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                        
                         <h3 class="text-2xl font-semibold mb-6 flex items-center gap-3">
                             <i class="fa-solid fa-code-branch text-cyan-400"></i> Stack Tecnológico
                         </h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default">Arquitectura Lógica</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default">Hardware IoT (ESP32)</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default">Prompt Engineering</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default">Troubleshooting Industrial</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default">Firebase & Firestore</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default">C++ / Arduino IDE</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-colors cursor-default">HTML / CSS / JS</span>
+                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Arquitectura Lógica</span>
+                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Hardware IoT (ESP32)</span>
+                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Prompt Engineering</span>
+                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Troubleshooting Industrial</span>
+                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Firebase & Firestore</span>
+                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">C++ / Arduino IDE</span>
+                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">HTML / CSS / JS</span>
                         </div>
                     </div>
                 </div>
@@ -177,8 +180,8 @@
         </div>
     </footer>
 
-    <!-- Modal Proyectos -->
-    <div id="projectModal" class="modal">
+    <!-- Modal Dinámico -->
+    <div id="itemModal" class="modal">
         <div class="modal-content border border-slate-700">
             <button class="absolute top-4 right-6 text-slate-400 hover:text-white text-3xl transition-colors">&times;</button>
             <h3 id="modal-title" class="text-3xl font-bold mb-4 text-white pr-8"></h3>
@@ -186,154 +189,94 @@
                 <img id="modal-image" src="" alt="Imagen" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-60"></div>
             </div>
-            <p id="modal-description" class="text-slate-300 leading-relaxed text-lg mb-6"></p>
-            
-            <button id="enhanceDescriptionBtn" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700 font-medium py-2.5 px-5 rounded-lg transition-colors focus:ring-2 focus:ring-cyan-500/50">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Mejorar Descripción con IA
-            </button>
-            
-            <div id="loadingIndicator" class="hidden items-center gap-3 mt-4 text-cyan-400 text-sm font-medium">
-                <div class="loader"></div> Optimizando texto estructural...
-            </div>
+            <p id="modal-description" class="text-slate-300 leading-relaxed text-lg mb-2"></p>
         </div>
     </div>
 
     <script>
-        // Mismos datos exactos generados en la versión anterior
-        const projects = [
+        const experiences = [
             {
-                id: 10,
-                title: "Sistema MIRA (Mitigación Industrial Rápida y Avanzada)",
-                briefDescription: "Sistema IoT para el monitoreo de paros de emergencia integrando ESP32, Firebase y aplicación móvil.",
-                fullDescription: "Proyecto Integrador Académico (2025): Diseño conceptual e integración de un sistema IoT para el monitoreo de paros de emergencia en líneas de producción. Se orquestó una aplicación móvil con Android Studio (utilizando HTML, CSS y JS para la interfaz) y Firebase como backend para la gestión de datos en tiempo real. La integración de hardware se logró configurando microcontroladores ESP32, estructurando la lógica de control en C++ (Arduino IDE) mediante el uso avanzado de Inteligencia Artificial para la generación precisa del código.",
-                imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", 
-                link: "#"
-            },
-            {
-                id: 3,
                 title: "Técnico de Mantenimiento (Versigent)",
-                briefDescription: "Mantenimiento y diagnóstico lógico en el área Lead Prep, solucionando problemas complejos bajo presión.",
-                fullDescription: "Actualmente me desempeño como Técnico de Mantenimiento en Versigent (área Lead Prep), donde soy encargado de brindar servicio preventivo y correctivo, solucionando problemas mecánicos, eléctricos, electrónicos, neumáticos e hidráulicos. Ejecuto diagnósticos lógicos para garantizar la continuidad operativa de maquinaria especializada, aplicando el troubleshooting industrial en un entorno de alta exigencia.",
-                imageUrl: "https://i.imgur.com/jXjzpq9.jpeg",
-                link: "#"
+                briefDescription: "Mantenimiento y diagnóstico lógico preventivo/correctivo en el área Lead Prep, solucionando problemas complejos bajo presión.",
+                fullDescription: "Actualmente me desempeño como Técnico de Mantenimiento en Versigent (área Lead Prep). Soy el encargado de garantizar la continuidad operativa de maquinaria industrial especializada mediante diagnósticos lógicos exhaustivos. Ejecuto rutinas preventivas y aplico troubleshooting avanzado para solucionar fallas críticas que involucran sistemas mecánicos, eléctricos, electrónicos, neumáticos e hidráulicos en entornos de manufactura de alto volumen.",
+                imageUrl: "https://i.imgur.com/jXjzpq9.jpeg"
             },
             {
-                id: 6,
                 title: "Operador de Mantenimiento (Versigent)",
-                briefDescription: "Responsable del mantenimiento y gestión en el área de Centro de Dados en un entorno industrial.",
-                fullDescription: "Como Operador de Mantenimiento en Versigent (2023-2025), fui responsable del mantenimiento y la gestión en el área de Centro de Dados. Esta experiencia implicó un apoyo crucial en diversas áreas de la planta, desarrollando una gran adaptabilidad técnica y sentando las bases prácticas para el análisis de sistemas electromecánicos complejos.",
-                imageUrl: "https://i.imgur.com/K3q6aVC.jpeg",
-                link: "#"
+                briefDescription: "Responsable de la gestión técnica y mantenimiento en el área de Centro de Dados en un entorno industrial continuo.",
+                fullDescription: "Como Operador de Mantenimiento en Versigent (2023-2025), asumí la responsabilidad de la gestión operativa y el soporte técnico en el área de Centro de Dados. Colaboré de cerca con equipos multidisciplinarios para estabilizar procesos, desarrollando una profunda adaptabilidad técnica y sentando las bases analíticas para abordar el mantenimiento de sistemas electromecánicos complejos.",
+                imageUrl: "https://i.imgur.com/K3q6aVC.jpeg"
             },
             {
-                id: 7,
                 title: "Operador de Manufactura (Versigent)",
-                briefDescription: "Supervisión de la calidad del producto final y disciplina operativa en línea de producción.",
-                fullDescription: "Inicié mi trayectoria en Versigent como Operador de Manufactura, enfocado en la supervisión de calidad y el cumplimiento estricto de los estándares del cliente. Esta etapa forjó mi disciplina, atención al detalle y capacidad para trabajar en equipo, logrando promociones internas gracias a la constancia y el aprendizaje continuo.",
-                imageUrl: "https://i.imgur.com/DZFDJkN.jpeg",
-                link: "#"
-            },
-            {
-                id: 1,
-                title: "Arquitectura Lógica y Prompt Engineering",
-                briefDescription: "Orquestación de código estructurado guiando herramientas de Inteligencia Artificial.",
-                fullDescription: "Especialista en la conceptualización de arquitecturas de software. Utilizo herramientas de Inteligencia Artificial para generar, estructurar y depurar código en lenguajes como HTML, CSS, JavaScript y C++, enfocándome en el diseño lógico de la solución y la integración final de los sistemas más que en la escritura manual tradicional.",
-                imageUrl: "https://i.imgur.com/aEc6IJf.jpeg",
-                link: "#"
-            },
-            {
-                id: 2,
-                title: "Integración IoT con ESP32 y Electrónica",
-                briefDescription: "Desarrollo de pruebas de concepto integrando hardware y software.",
-                fullDescription: "Experiencia en la configuración y puesta en marcha de microcontroladores ESP32 (DevKit V1). Diseño prototipos técnicos que validan la viabilidad de la integración entre infraestructura web o móvil y sistemas embebidos, conectando el entorno físico con bases de datos en la nube.",
-                imageUrl: "https://i.imgur.com/sr96mZA.jpeg",
-                link: "#"
-            },
-            {
-                id: 4,
-                title: "Proyecto 'RentaApp'",
-                briefDescription: "Plataforma web para la gestión de alquileres con backend en Firebase.",
-                fullDescription: "Diseño y despliegue de RentaApp, una aplicación web orientada a facilitar la administración de contratos, inquilinos y pagos. Estructuré la base de datos en tiempo real utilizando Firebase y Firestore, orquestando el desarrollo de la interfaz de usuario de manera eficiente.",
-                imageUrl: "https://i.imgur.com/cJR6t0V.png",
-                link: "#"
+                briefDescription: "Supervisión de calidad del producto final y aplicación de disciplina operativa en líneas de producción de arneses.",
+                fullDescription: "Inicié mi trayectoria en el sector industrial como Operador de Manufactura (2018-2023). Mi rol se centró en la supervisión de calidad y el cumplimiento estricto de los estándares del cliente final. Esta etapa forjó mi disciplina, atención meticulosa a los detalles y capacidad de trabajo en equipo, lo que me permitió asegurar promociones internas de manera sostenida.",
+                imageUrl: "https://i.imgur.com/DZFDJkN.jpeg"
             }
         ];
 
-        const container = document.getElementById('projects-container');
-        const modal = document.getElementById('projectModal');
+        const projects = [
+            {
+                title: "Sistema MIRA (Mitigación Industrial Rápida y Avanzada)",
+                briefDescription: "Sistema IoT de alerta para líneas de producción integrando ESP32, Firebase y arquitectura móvil.",
+                fullDescription: "El Sistema MIRA fue diseñado como un proyecto integrador académico (2025) para monitorear paros de emergencia en tiempo real dentro de líneas de manufactura. Integré microcontroladores ESP32 estructurando la lógica de recolección de datos mediante C++ (Arduino IDE). Posteriormente, orquesté una aplicación móvil en Android Studio (utilizando web views en HTML/CSS/JS) y enlacé la infraestructura en la nube usando Firebase para la sincronización de bases de datos, utilizando Inteligencia Artificial como herramienta principal para la sintaxis y depuración del código.",
+                imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Arquitectura Lógica y Prompt Engineering",
+                briefDescription: "Orquestación de código estructurado guiando de manera experta a motores de Inteligencia Artificial.",
+                fullDescription: "Mi enfoque tecnológico no reside en la escritura manual de líneas de código, sino en el rol de Arquitecto Lógico. Domino el arte del Prompt Engineering para guiar a modelos de IA avanzados en la generación, estructuración y depuración de soluciones en lenguajes como HTML, CSS, JavaScript y C++. Esto asegura un desarrollo acelerado, código limpio y me permite enfocar mi experiencia analítica exclusivamente en que la solución resuelva la problemática raíz.",
+                imageUrl: "https://i.imgur.com/aEc6IJf.jpeg"
+            },
+            {
+                title: "Integración IoT (ESP32) y Electrónica",
+                briefDescription: "Diseño y despliegue de pruebas de concepto embebidas que conectan entornos físicos con la nube.",
+                fullDescription: "Cuento con experiencia directa en la parametrización, integración de sensores y despliegue de microcontroladores ESP32 (DevKit V1). Diseño ecosistemas electrónicos (IoT) desde la prueba de concepto en protoboard hasta el enlace con bases de datos remotas. Mi fortaleza radica en comprender cómo una señal de hardware se traduce eficientemente a un entorno web estructurado para la toma de decisiones.",
+                imageUrl: "https://i.imgur.com/sr96mZA.jpeg"
+            }
+        ];
+
+        const modal = document.getElementById('itemModal');
         const closeBtn = modal.querySelector('button');
-        
-        function renderProjects() {
+
+        function renderCards(dataArray, containerId) {
+            const container = document.getElementById(containerId);
             container.innerHTML = '';
-            projects.forEach(p => {
+            dataArray.forEach(item => {
                 const card = document.createElement('div');
-                // Estilos de tarjeta oscura con borde neón al hover
                 card.className = 'bg-dark rounded-xl overflow-hidden border border-slate-800 neon-border transition-all duration-300 cursor-pointer flex flex-col h-full';
                 card.innerHTML = `
                     <div class="h-48 overflow-hidden relative">
                         <div class="absolute inset-0 bg-dark/20 z-10 hover:bg-transparent transition-all"></div>
-                        <img src="${p.imageUrl}" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                        <img src="${item.imageUrl}" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-100 mb-3">${p.title}</h3>
-                        <p class="text-slate-400 text-sm flex-grow mb-6">${p.briefDescription}</p>
+                        <h3 class="text-xl font-bold text-slate-100 mb-3">${item.title}</h3>
+                        <p class="text-slate-400 text-sm flex-grow mb-6">${item.briefDescription}</p>
                         <button class="text-cyan-400 text-sm font-semibold flex items-center gap-2 hover:text-cyan-300 w-fit">
-                            Explorar Arquitectura <i class="fa-solid fa-arrow-right"></i>
+                            Ver Detalles <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
                 `;
-                card.addEventListener('click', () => openModal(p));
+                card.addEventListener('click', () => openModal(item));
                 container.appendChild(card);
             });
         }
 
-        let currentP = null;
-        function openModal(p) {
-            currentP = p;
-            document.getElementById('modal-title').innerText = p.title;
-            document.getElementById('modal-image').src = p.imageUrl;
-            document.getElementById('modal-description').innerText = p.fullDescription;
-            document.getElementById('loadingIndicator').classList.add('hidden');
-            document.getElementById('loadingIndicator').classList.remove('flex');
+        function openModal(item) {
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-image').src = item.imageUrl;
+            document.getElementById('modal-description').innerText = item.fullDescription;
             modal.style.display = 'flex';
         }
 
         closeBtn.onclick = () => modal.style.display = 'none';
         window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; }
 
-        document.getElementById('enhanceDescriptionBtn').addEventListener('click', async () => {
-            if(!currentP) return;
-            const btn = document.getElementById('enhanceDescriptionBtn');
-            const loader = document.getElementById('loadingIndicator');
-            
-            btn.disabled = true;
-            btn.classList.add('opacity-50');
-            loader.classList.remove('hidden');
-            loader.classList.add('flex');
-
-            const prompt = `Expande la descripción, haciéndola profesional y destacando habilidades técnicas. Título: "${currentP.title}". Resumen: "${currentP.briefDescription}". Completo: "${currentP.fullDescription}"`;
-
-            try {
-                // Función API mantenida intacta del código original
-                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=`; // Requiere Key
-                const res = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                const result = await res.json();
-                
-                if (result.candidates) {
-                    document.getElementById('modal-description').innerText = result.candidates[0].content.parts[0].text;
-                }
-            } catch (error) {
-                console.error(error);
-            } finally {
-                btn.disabled = false;
-                btn.classList.remove('opacity-50');
-                loader.classList.add('hidden');
-                loader.classList.remove('flex');
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards(experiences, 'experience-container');
+            renderCards(projects, 'projects-container');
         });
-
-        document.addEventListener('DOMContentLoaded', renderProjects);
     </script>
 </body>
 </html>

@@ -24,7 +24,6 @@
     <style>
         body { background-color: #020617; color: #f8fafc; overflow-x: hidden; }
         
-        /* Glassmorphism y Navegación */
         .glass-nav {
             background: rgba(11, 17, 32, 0.75);
             backdrop-filter: blur(16px);
@@ -32,24 +31,19 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* Efectos de Tarjetas */
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .card-hover:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px -15px rgba(34, 211, 238, 0.15);
             border-color: rgba(34, 211, 238, 0.4);
         }
         
-        /* Gradientes de Texto */
         .text-gradient {
             background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Modal Optimizado */
         .modal {
             display: none; position: fixed; z-index: 1000; inset: 0;
             background-color: rgba(2, 6, 23, 0.9);
@@ -70,21 +64,31 @@
         .modal-content::-webkit-scrollbar { width: 6px; }
         .modal-content::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
 
-        /* Animaciones de Entrada (Scroll Reveal) */
         .reveal {
             opacity: 0; transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Contenedor de Video Responsivo */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+            background: #000;
+        }
+        .video-container iframe, .video-container video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-cyan-500 selection:text-white">
 
-    <!-- Fondo Dinámico -->
     <div class="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#020617] to-[#020617]"></div>
     <div class="fixed top-0 left-0 w-full h-full z-[-1] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
 
-    <!-- Navegación Sticky Superior (Mejor Usabilidad) -->
     <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#top" class="text-xl font-bold tracking-tighter text-white">CD<span class="text-cyan-400">JC</span></a>
@@ -97,7 +101,6 @@
         </div>
     </nav>
 
-    <!-- Header / Hero Section -->
     <header id="top" class="min-h-screen flex items-center pt-20 pb-12 px-6">
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-16 max-w-7xl reveal">
             <div class="flex-1 text-center md:text-left">
@@ -129,41 +132,29 @@
     </header>
 
     <main class="container mx-auto px-6 max-w-7xl">
-        
-        <!-- Experiencia Laboral -->
         <section id="experience" class="py-24 border-t border-slate-800/50">
             <div class="mb-16 reveal">
                 <h2 class="text-4xl font-bold mb-4">Experiencia <span class="text-cyan-400">Industrial</span></h2>
                 <p class="text-slate-400 text-lg max-w-2xl">Trayectoria ascendente enfocada en diagnóstico lógico, resolución de problemas críticos y mantenimiento de sistemas electromecánicos.</p>
             </div>
-            <div id="experience-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Inyectado por JS -->
-            </div>
+            <div id="experience-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- Proyectos -->
         <section id="projects" class="py-24 border-t border-slate-800/50">
             <div class="mb-16 reveal">
                 <h2 class="text-4xl font-bold mb-4">Arquitectura & <span class="text-cyan-400">Proyectos</span></h2>
                 <p class="text-slate-400 text-lg max-w-2xl">Soluciones integrales combinando hardware IoT (ESP32), orquestación de bases de datos y diseño lógico estructurado.</p>
             </div>
-            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Inyectado por JS -->
-            </div>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- Sobre Mí -->
         <section id="about" class="py-24 border-t border-slate-800/50">
             <div class="flex flex-col lg:flex-row gap-16 items-center reveal">
                 <div class="lg:w-1/2">
                     <h2 class="text-4xl font-bold mb-6">Perfil <span class="text-cyan-400">Profesional</span></h2>
                     <div class="space-y-4 text-lg text-slate-300 leading-relaxed">
-                        <p>
-                            Ingeniero en Sistemas Computacionales con casi ocho años de experiencia técnica en el sector industrial. Durante mi trayectoria, he desarrollado una capacidad analítica excepcional para el diagnóstico lógico (troubleshooting) y la resolución de problemas bajo presión en entornos de alta exigencia.
-                        </p>
-                        <p>
-                            Me especializo en la arquitectura de sistemas y la integración de tecnologías. En lugar de limitarme al desarrollo manual tradicional, utilizo metodologías Low-Code y herramientas de Inteligencia Artificial para la generación de código. Esto me permite enfocar mi talento analítico en el <strong>diseño estructural</strong> y la conexión de la infraestructura para resolver el problema de raíz.
-                        </p>
+                        <p>Ingeniero en Sistemas Computacionales con casi ocho años de experiencia técnica en el sector industrial. Durante mi trayectoria, he desarrollado una capacidad analítica excepcional para el diagnóstico lógico (troubleshooting) y la resolución de problemas bajo presión en entornos de alta exigencia.</p>
+                        <p>Me especializo en la arquitectura de sistemas y la integración de tecnologías. Utilizo metodologías Low-Code y herramientas de Inteligencia Artificial para la generación de código, lo que me permite enfocar mi talento analítico en el <strong>diseño estructural</strong> y la conexión de la infraestructura para resolver el problema de raíz.</p>
                     </div>
                 </div>
                 <div class="lg:w-1/2 w-full">
@@ -173,14 +164,12 @@
                             <i class="fa-solid fa-layer-group text-cyan-400"></i> Stack y Competencias
                         </h3>
                         <div class="flex flex-wrap gap-3 relative z-10">
-                            <!-- Tags de habilidades -->
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Arquitectura Lógica</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Hardware IoT (ESP32)</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Prompt Engineering</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Troubleshooting Industrial</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Firebase & Firestore</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">C++ (Arduino IDE)</span>
-                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Integración Web (JS)</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300">Arquitectura Lógica</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300">Hardware IoT (ESP32)</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300">Prompt Engineering</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300">Troubleshooting Industrial</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300">Firebase & Firestore</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300">C++ (Arduino IDE)</span>
                         </div>
                     </div>
                 </div>
@@ -188,7 +177,6 @@
         </section>
     </main>
 
-    <!-- Footer / Contacto -->
     <footer id="contact" class="bg-[#050B14] border-t border-slate-800 pt-24 pb-12 relative overflow-hidden mt-12">
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-cyan-900/10 blur-[100px] rounded-full z-0"></div>
         <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl reveal">
@@ -211,37 +199,28 @@
         </div>
     </footer>
 
-    <!-- Modal Dinámico Rediseñado -->
+    <!-- Modal Dinámico con Soporte Multimedia -->
     <div id="itemModal" class="modal">
         <div class="modal-content relative flex flex-col">
-            <!-- Botón de cierre flotante -->
             <button class="absolute top-4 right-4 z-50 w-10 h-10 bg-slate-900/80 hover:bg-slate-800 rounded-full text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700 backdrop-blur-sm" id="closeModalBtn">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             
-            <!-- Imagen superior del modal -->
-            <div class="w-full h-64 sm:h-80 relative overflow-hidden shrink-0 rounded-t-3xl border-b border-slate-800">
-                <img id="modal-image" src="" alt="Detalle" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent opacity-90"></div>
-                <!-- Título sobre la imagen -->
-                <div class="absolute bottom-0 left-0 p-8 w-full">
-                    <div id="modal-date" class="text-cyan-400 text-sm font-bold tracking-wider uppercase mb-2"></div>
-                    <h3 id="modal-title" class="text-3xl sm:text-4xl font-bold text-white leading-tight"></h3>
-                </div>
+            <!-- Contenedor Multimedia Dinámico (Video o Imagen) -->
+            <div id="modal-media" class="w-full relative overflow-hidden shrink-0 rounded-t-3xl border-b border-slate-800 bg-black">
+                <!-- Se inyecta por JS -->
             </div>
             
-            <!-- Contenido del modal -->
             <div class="p-8">
-                <div class="flex flex-wrap gap-2 mb-6" id="modal-tags">
-                    <!-- Tags inyectados por JS -->
-                </div>
+                <div id="modal-date" class="text-cyan-400 text-sm font-bold tracking-wider uppercase mb-2"></div>
+                <h3 id="modal-title" class="text-3xl sm:text-4xl font-bold text-white leading-tight mb-6"></h3>
+                <div class="flex flex-wrap gap-2 mb-6" id="modal-tags"></div>
                 <p id="modal-description" class="text-slate-300 text-lg leading-relaxed"></p>
             </div>
         </div>
     </div>
 
     <script>
-        // Datos Estructurados con Tags para mejor UX
         const experiences = [
             {
                 title: "Técnico de Mantenimiento",
@@ -257,6 +236,7 @@
                 briefDescription: "Responsable de la gestión técnica y mantenimiento en el área de Centro de Dados en un entorno industrial continuo.",
                 fullDescription: "Asumí la responsabilidad de la gestión operativa y el soporte técnico en el área de Centro de Dados. Colaboré de cerca con equipos multidisciplinarios para estabilizar procesos, desarrollando una profunda adaptabilidad técnica y sentando las bases analíticas para abordar el mantenimiento de sistemas electromecánicos complejos.",
                 imageUrl: "https://i.imgur.com/K3q6aVC.jpeg",
+                videoUrl: "Centro de Dados.mp4",
                 tags: ["Gestión Técnica", "Adaptabilidad", "Mantenimiento Preventivo"]
             },
             {
@@ -276,6 +256,7 @@
                 briefDescription: "Plataforma de alerta para líneas de producción integrando ESP32, Firebase y arquitectura móvil.",
                 fullDescription: "El Sistema MIRA (Mitigación Industrial Rápida y Avanzada) fue diseñado para monitorear paros de emergencia en tiempo real. Integré microcontroladores ESP32 estructurando la lógica de recolección de datos en C++. Orquesté una aplicación móvil en Android Studio (HTML/CSS/JS) y enlacé la infraestructura usando Firebase para la sincronización de bases de datos. Utilicé Inteligencia Artificial como herramienta principal para la sintaxis y depuración de todo el código.",
                 imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                videoUrl: "Aplicación MIRA.mp4",
                 tags: ["ESP32 / C++", "Firebase", "App Móvil", "Integración IA"]
             },
             {
@@ -292,30 +273,32 @@
                 briefDescription: "Diseño y despliegue de pruebas de concepto embebidas que conectan entornos físicos con la nube.",
                 fullDescription: "Cuento con experiencia directa en la parametrización, integración de sensores y despliegue de microcontroladores ESP32 (DevKit V1). Diseño ecosistemas electrónicos desde la prueba de concepto en protoboard hasta el enlace con bases de datos remotas, comprendiendo exactamente cómo una señal de hardware se traduce a un entorno web estructurado para la toma de decisiones.",
                 imageUrl: "https://i.imgur.com/sr96mZA.jpeg",
+                videoUrl: "Carro Robot.mp4",
                 tags: ["Microcontroladores", "Sensores", "Prototipado"]
             }
         ];
 
-        // Lógica de Renderizado y Modal
         const modal = document.getElementById('itemModal');
+        const mediaContainer = document.getElementById('modal-media');
         
         function renderCards(dataArray, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
             dataArray.forEach((item, index) => {
                 const card = document.createElement('div');
-                // Añadida clase 'reveal' y delay escalonado para la animación de scroll
                 card.className = 'bg-[#0B1120] rounded-2xl overflow-hidden border border-slate-800 card-hover cursor-pointer flex flex-col h-full reveal';
                 card.style.transitionDelay = `${index * 100}ms`;
                 
-                // Renderizar tags para la tarjeta (máximo 2 para mantener diseño limpio)
                 const cardTags = item.tags.slice(0, 2).map(tag => 
                     `<span class="text-xs font-semibold px-2.5 py-1 bg-slate-800 text-cyan-400 rounded-md border border-slate-700">${tag}</span>`
                 ).join('');
 
+                const videoIcon = item.videoUrl ? `<div class="absolute inset-0 flex justify-center items-center z-20"><div class="bg-cyan-500/80 text-white rounded-full w-12 h-12 flex justify-center items-center backdrop-blur-sm"><i class="fa-solid fa-play ml-1"></i></div></div>` : '';
+
                 card.innerHTML = `
                     <div class="h-48 overflow-hidden relative border-b border-slate-800">
                         <div class="absolute inset-0 bg-[#0B1120]/40 z-10 transition-colors group-hover:bg-transparent"></div>
+                        ${videoIcon}
                         <img src="${item.imageUrl}" class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110">
                     </div>
                     <div class="p-6 flex flex-col flex-grow relative">
@@ -335,38 +318,53 @@
         function openModal(item) {
             document.getElementById('modal-title').innerText = item.title;
             document.getElementById('modal-date').innerText = item.date;
-            document.getElementById('modal-image').src = item.imageUrl;
             document.getElementById('modal-description').innerText = item.fullDescription;
             
-            // Inyectar todos los tags en el modal
+            mediaContainer.innerHTML = '';
+            if (item.videoUrl && item.videoUrl.trim() !== '') {
+                // Video MP4 alojado localmente en Github (con encodeURI para evitar problemas con espacios/acentos)
+                mediaContainer.innerHTML = `
+                    <div class="video-container">
+                        <video controls style="width: 100%; height: 100%; object-fit: contain;">
+                            <source src="${encodeURI(item.videoUrl)}" type="video/mp4">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+                    </div>`;
+            } else {
+                mediaContainer.innerHTML = `
+                    <div class="w-full h-64 sm:h-80 relative">
+                        <img src="${item.imageUrl}" alt="Detalle" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent opacity-90"></div>
+                    </div>`;
+            }
+            
             const tagsContainer = document.getElementById('modal-tags');
             tagsContainer.innerHTML = item.tags.map(tag => 
                 `<span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 text-sm font-medium rounded-lg border border-cyan-500/20">${tag}</span>`
             ).join('');
 
             modal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             modal.classList.remove('show');
             document.body.style.overflow = 'auto';
+            setTimeout(() => { mediaContainer.innerHTML = ''; }, 300);
         }
 
         document.getElementById('closeModalBtn').onclick = closeModal;
         window.onclick = (e) => { if(e.target === modal) closeModal(); }
-        // Cerrar modal con tecla ESC
         document.addEventListener('keydown', (e) => {
             if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
         });
 
-        // Animación al hacer Scroll (Intersection Observer)
         function initScrollAnimations() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Solo animar una vez
+                        observer.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
@@ -374,7 +372,6 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
             renderCards(experiences, 'experience-container');
             renderCards(projects, 'projects-container');

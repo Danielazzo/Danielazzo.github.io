@@ -13,7 +13,7 @@
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        dark: '#0f172a',
+                        dark: '#0B1120',
                         darker: '#020617',
                         cyan: { 400: '#22d3ee', 500: '#06b6d4' }
                     }
@@ -22,103 +22,130 @@
         }
     </script>
     <style>
-        body { background-color: #020617; color: #f8fafc; }
+        body { background-color: #020617; color: #f8fafc; overflow-x: hidden; }
+        
+        /* Glassmorphism y Navegación */
         .glass-nav {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(11, 17, 32, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .neon-border:hover {
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
-            border-color: rgba(34, 211, 238, 0.5);
+        
+        /* Efectos de Tarjetas */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(34, 211, 238, 0.15);
+            border-color: rgba(34, 211, 238, 0.4);
+        }
+        
+        /* Gradientes de Texto */
         .text-gradient {
-            background: linear-gradient(to right, #22d3ee, #3b82f6);
+            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* Modal Optimizado */
         .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px); justify-content: center; align-items: center;
+            display: none; position: fixed; z-index: 1000; inset: 0;
+            background-color: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(8px);
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal.show {
+            display: flex; opacity: 1; justify-content: center; align-items: center; padding: 1rem;
         }
         .modal-content {
-            background-color: #0f172a; border: 1px solid #1e293b;
-            margin: auto; padding: 2rem; border-radius: 1rem;
-            max-width: 800px; width: 90%; position: relative;
+            background: #0B1120; border: 1px solid #1e293b;
+            border-radius: 1.5rem; max-width: 900px; width: 100%;
             max-height: 90vh; overflow-y: auto;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95); transition: transform 0.3s ease;
         }
-        .modal-content::-webkit-scrollbar { width: 8px; }
-        .modal-content::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .modal.show .modal-content { transform: scale(1); }
+        .modal-content::-webkit-scrollbar { width: 6px; }
+        .modal-content::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+
+        /* Animaciones de Entrada (Scroll Reveal) */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-white relative">
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
 
-    <div class="fixed inset-0 z-[-1] bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
+    <!-- Fondo Dinámico -->
+    <div class="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#020617] to-[#020617]"></div>
+    <div class="fixed top-0 left-0 w-full h-full z-[-1] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
 
-    <!-- Menú Flotante Glassmorphism -->
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass-nav rounded-full px-6 py-3 shadow-lg shadow-black/50">
-        <ul class="flex space-x-6 md:space-x-10 text-sm md:text-base font-medium text-slate-300">
-            <li><a href="#top" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-house"></i> <span class="hidden md:inline">Inicio</span></a></li>
-            <li><a href="#experience" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-briefcase"></i> <span class="hidden md:inline">Experiencia</span></a></li>
-            <li><a href="#projects" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-microchip"></i> <span class="hidden md:inline">Proyectos</span></a></li>
-            <li><a href="#about" class="hover:text-cyan-400 transition-colors flex items-center gap-2"><i class="fa-solid fa-user-astronaut"></i> <span class="hidden md:inline">Perfil</span></a></li>
-        </ul>
+    <!-- Navegación Sticky Superior (Mejor Usabilidad) -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#top" class="text-xl font-bold tracking-tighter text-white">CD<span class="text-cyan-400">JC</span></a>
+            <ul class="flex space-x-6 md:space-x-8 text-sm font-medium text-slate-300">
+                <li><a href="#experience" class="hover:text-cyan-400 transition-colors">Experiencia</a></li>
+                <li><a href="#projects" class="hover:text-cyan-400 transition-colors">Proyectos</a></li>
+                <li><a href="#about" class="hover:text-cyan-400 transition-colors">Perfil</a></li>
+                <li><a href="#contact" class="px-4 py-2 bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 rounded-full hover:bg-cyan-500 hover:text-darker transition-colors hidden md:block">Contactar</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Header / Hero Section -->
-    <header id="top" class="min-h-[85vh] flex items-center justify-center pt-24 pb-12 px-4">
-        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 max-w-6xl">
-            <div class="text-center md:text-left flex-1">
-                <div class="inline-block px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-semibold tracking-wide mb-6">
-                    <i class="fa-solid fa-bolt text-yellow-400 mr-2"></i>Disponible para trabajo remoto
+    <header id="top" class="min-h-screen flex items-center pt-20 pb-12 px-6">
+        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-16 max-w-7xl reveal">
+            <div class="flex-1 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 text-slate-300 text-sm font-medium mb-8">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+                    </span>
+                    Disponible para trabajo remoto
                 </div>
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
                     Carlos Daniel <br />
                     <span class="text-gradient">Jaime Camacho</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-slate-400 font-light mb-6">
-                    Integrador de Soluciones y <br class="hidden md:block"/>Arquitectura Tecnológica
-                </p>
-                <p class="text-base text-slate-500 max-w-lg mx-auto md:mx-0 mb-8 leading-relaxed">
-                    Especialista en integración de hardware IoT, bases de datos y orquestación de software estructurado con Inteligencia Artificial.
+                <p class="text-xl md:text-2xl text-slate-400 font-light mb-8 max-w-2xl">
+                    Integrador de Soluciones, <strong class="text-slate-200 font-semibold">Arquitectura Tecnológica</strong> y Diagnóstico Industrial.
                 </p>
                 <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                    <a href="#projects" class="bg-cyan-500 hover:bg-cyan-400 text-darker font-bold py-3 px-8 rounded-lg transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(34,211,238,0.6)]">
-                        Ver Proyectos
-                    </a>
-                    <a href="#contact" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-medium py-3 px-8 rounded-lg transition-all">
-                        Contactar
+                    <a href="#projects" class="bg-cyan-500 hover:bg-cyan-400 text-darker font-bold py-3.5 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] flex items-center gap-2">
+                        Explorar Proyectos <i class="fa-solid fa-arrow-down"></i>
                     </a>
                 </div>
             </div>
             <div class="flex-shrink-0 relative">
-                <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-                <img src="https://i.imgur.com/RXAw2Dk.jpeg" alt="Carlos Daniel" class="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-slate-700 object-cover shadow-2xl z-10">
+                <div class="absolute inset-0 bg-cyan-500/20 rounded-full blur-3xl scale-150 animate-pulse"></div>
+                <img src="https://i.imgur.com/RXAw2Dk.jpeg" alt="Carlos Daniel" class="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-4 border-slate-800 object-cover shadow-2xl z-10">
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 md:px-8 max-w-7xl">
+    <main class="container mx-auto px-6 max-w-7xl">
         
         <!-- Experiencia Laboral -->
-        <section id="experience" class="py-20 border-t border-slate-800">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Experiencia <span class="text-cyan-400">Laboral</span></h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Trayectoria industrial enfocada en diagnóstico lógico, resolución de problemas bajo presión y optimización operativa.</p>
+        <section id="experience" class="py-24 border-t border-slate-800/50">
+            <div class="mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Experiencia <span class="text-cyan-400">Industrial</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl">Trayectoria ascendente enfocada en diagnóstico lógico, resolución de problemas críticos y mantenimiento de sistemas electromecánicos.</p>
             </div>
-            <div id="experience-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="experience-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Inyectado por JS -->
             </div>
         </section>
 
         <!-- Proyectos -->
-        <section id="projects" class="py-20 border-t border-slate-800">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Arquitectura y <span class="text-cyan-400">Proyectos</span></h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Soluciones integrales combinando hardware embebido, plataformas móviles y diseño lógico estructurado.</p>
+        <section id="projects" class="py-24 border-t border-slate-800/50">
+            <div class="mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Arquitectura & <span class="text-cyan-400">Proyectos</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl">Soluciones integrales combinando hardware IoT (ESP32), orquestación de bases de datos y diseño lógico estructurado.</p>
             </div>
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Inyectado por JS -->
@@ -126,31 +153,34 @@
         </section>
 
         <!-- Sobre Mí -->
-        <section id="about" class="py-20 border-t border-slate-800">
-            <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <section id="about" class="py-24 border-t border-slate-800/50">
+            <div class="flex flex-col lg:flex-row gap-16 items-center reveal">
                 <div class="lg:w-1/2">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Sobre <span class="text-cyan-400">Mí</span></h2>
-                    <p class="text-lg text-slate-300 leading-relaxed mb-6">
-                        Ingeniero en Sistemas Computacionales con casi ocho años de experiencia técnica en el sector industrial, donde desarrollé una capacidad analítica excepcional para el diagnóstico lógico y la resolución de problemas críticos en entornos de alta exigencia.
-                    </p>
-                    <p class="text-lg text-slate-400 leading-relaxed">
-                        Me especializo en la arquitectura de sistemas y la integración de tecnologías (hardware IoT, web, bases de datos). Utilizo metodologías Low-Code y herramientas de Inteligencia Artificial para la orquestación y generación de código, permitiéndome enfocar el 100% de mi esfuerzo en el diseño estructural y la conexión de la infraestructura tecnológica para resolver problemáticas operativas reales.
-                    </p>
+                    <h2 class="text-4xl font-bold mb-6">Perfil <span class="text-cyan-400">Profesional</span></h2>
+                    <div class="space-y-4 text-lg text-slate-300 leading-relaxed">
+                        <p>
+                            Ingeniero en Sistemas Computacionales con casi ocho años de experiencia técnica en el sector industrial. Durante mi trayectoria, he desarrollado una capacidad analítica excepcional para el diagnóstico lógico (troubleshooting) y la resolución de problemas bajo presión en entornos de alta exigencia.
+                        </p>
+                        <p>
+                            Me especializo en la arquitectura de sistemas y la integración de tecnologías. En lugar de limitarme al desarrollo manual tradicional, utilizo metodologías Low-Code y herramientas de Inteligencia Artificial para la generación de código. Esto me permite enfocar mi talento analítico en el <strong>diseño estructural</strong> y la conexión de la infraestructura para resolver el problema de raíz.
+                        </p>
+                    </div>
                 </div>
                 <div class="lg:w-1/2 w-full">
-                    <div class="bg-dark p-8 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                        <h3 class="text-2xl font-semibold mb-6 flex items-center gap-3">
-                            <i class="fa-solid fa-code-branch text-cyan-400"></i> Stack Tecnológico
+                    <div class="bg-[#0B1120] p-8 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 transition-all duration-500 group-hover:bg-cyan-500/20"></div>
+                        <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3 text-white">
+                            <i class="fa-solid fa-layer-group text-cyan-400"></i> Stack y Competencias
                         </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Arquitectura Lógica</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Hardware IoT (ESP32)</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Prompt Engineering</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Troubleshooting Industrial</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">Firebase & Firestore</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">C++ / Arduino IDE</span>
-                            <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-sm font-medium text-slate-300">HTML / CSS / JS</span>
+                        <div class="flex flex-wrap gap-3 relative z-10">
+                            <!-- Tags de habilidades -->
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Arquitectura Lógica</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Hardware IoT (ESP32)</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Prompt Engineering</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Troubleshooting Industrial</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Firebase & Firestore</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">C++ (Arduino IDE)</span>
+                            <span class="px-4 py-2 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-slate-300 hover:border-cyan-500 hover:text-cyan-400 transition-colors">Integración Web (JS)</span>
                         </div>
                     </div>
                 </div>
@@ -159,103 +189,142 @@
     </main>
 
     <!-- Footer / Contacto -->
-    <footer id="contact" class="bg-darker border-t border-slate-800 pt-20 pb-10 relative overflow-hidden">
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-cyan-900/20 blur-[100px] rounded-full z-0"></div>
-        <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-            <h2 class="text-4xl font-bold mb-6">Iniciemos una <span class="text-cyan-400">Conexión</span></h2>
-            <p class="text-slate-400 mb-10 text-lg">Buscando nuevas oportunidades de integración tecnológica y desarrollo remoto. Si tienes un proyecto en mente o una vacante, hablemos.</p>
+    <footer id="contact" class="bg-[#050B14] border-t border-slate-800 pt-24 pb-12 relative overflow-hidden mt-12">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-cyan-900/10 blur-[100px] rounded-full z-0"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl reveal">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Iniciemos una <span class="text-cyan-400">Conexión</span></h2>
+            <p class="text-slate-400 mb-12 text-lg">Buscando oportunidades de integración tecnológica y roles remotos donde el diagnóstico analítico y la arquitectura de soluciones sean clave.</p>
             
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
-                <a href="mailto:Danielazo_13@live.com" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white py-3 px-8 rounded-xl transition-all">
-                    <i class="fa-solid fa-envelope text-cyan-400"></i> Correo Electrónico
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-16">
+                <a href="mailto:Danielazo_13@live.com" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white py-4 px-8 rounded-2xl transition-all shadow-lg hover:shadow-cyan-500/20">
+                    <i class="fa-solid fa-envelope text-cyan-400 text-xl"></i> Danielazo_13@live.com
                 </a>
-                <a href="https://www.linkedin.com/in/carlos-daniel-jaime-camacho-978479370" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-blue-400 py-3 px-8 rounded-xl transition-all">
-                    <i class="fa-brands fa-linkedin-in"></i> LinkedIn
-                </a>
-                <a href="tel:+524931708100" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white py-3 px-8 rounded-xl transition-all">
-                    <i class="fa-solid fa-phone text-cyan-400"></i> Llamar
+                <a href="https://www.linkedin.com/in/carlos-daniel-jaime-camacho-978479370" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0077b5]/10 hover:bg-[#0077b5]/20 border border-[#0077b5]/50 text-white py-4 px-8 rounded-2xl transition-all shadow-lg">
+                    <i class="fa-brands fa-linkedin-in text-[#0077b5] text-xl"></i> LinkedIn
                 </a>
             </div>
-            <p class="text-slate-600 text-sm">&copy; 2026 Carlos Daniel Jaime Camacho. Arquitectura Lógica & IoT.</p>
+            
+            <div class="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+                <p>&copy; 2026 Carlos Daniel Jaime Camacho.</p>
+                <p>Fresnillo, Zacatecas | Tel: +52 493 170 8100</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Modal Dinámico -->
+    <!-- Modal Dinámico Rediseñado -->
     <div id="itemModal" class="modal">
-        <div class="modal-content border border-slate-700">
-            <button class="absolute top-4 right-6 text-slate-400 hover:text-white text-3xl transition-colors">&times;</button>
-            <h3 id="modal-title" class="text-3xl font-bold mb-4 text-white pr-8"></h3>
-            <div class="relative w-full h-64 md:h-80 mb-6 rounded-xl overflow-hidden border border-slate-800">
-                <img id="modal-image" src="" alt="Imagen" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-60"></div>
+        <div class="modal-content relative flex flex-col">
+            <!-- Botón de cierre flotante -->
+            <button class="absolute top-4 right-4 z-50 w-10 h-10 bg-slate-900/80 hover:bg-slate-800 rounded-full text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700 backdrop-blur-sm" id="closeModalBtn">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <!-- Imagen superior del modal -->
+            <div class="w-full h-64 sm:h-80 relative overflow-hidden shrink-0 rounded-t-3xl border-b border-slate-800">
+                <img id="modal-image" src="" alt="Detalle" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0B1120] via-transparent to-transparent opacity-90"></div>
+                <!-- Título sobre la imagen -->
+                <div class="absolute bottom-0 left-0 p-8 w-full">
+                    <div id="modal-date" class="text-cyan-400 text-sm font-bold tracking-wider uppercase mb-2"></div>
+                    <h3 id="modal-title" class="text-3xl sm:text-4xl font-bold text-white leading-tight"></h3>
+                </div>
             </div>
-            <p id="modal-description" class="text-slate-300 leading-relaxed text-lg mb-2"></p>
+            
+            <!-- Contenido del modal -->
+            <div class="p-8">
+                <div class="flex flex-wrap gap-2 mb-6" id="modal-tags">
+                    <!-- Tags inyectados por JS -->
+                </div>
+                <p id="modal-description" class="text-slate-300 text-lg leading-relaxed"></p>
+            </div>
         </div>
     </div>
 
     <script>
+        // Datos Estructurados con Tags para mejor UX
         const experiences = [
             {
-                title: "Técnico de Mantenimiento (Versigent)",
-                briefDescription: "Mantenimiento y diagnóstico lógico preventivo/correctivo en el área Lead Prep, solucionando problemas complejos bajo presión.",
+                title: "Técnico de Mantenimiento",
+                date: "Versigent • 2025 - Presente",
+                briefDescription: "Diagnóstico lógico preventivo y correctivo en el área Lead Prep, solucionando problemas complejos bajo presión.",
                 fullDescription: "Actualmente me desempeño como Técnico de Mantenimiento en Versigent (área Lead Prep). Soy el encargado de garantizar la continuidad operativa de maquinaria industrial especializada mediante diagnósticos lógicos exhaustivos. Ejecuto rutinas preventivas y aplico troubleshooting avanzado para solucionar fallas críticas que involucran sistemas mecánicos, eléctricos, electrónicos, neumáticos e hidráulicos en entornos de manufactura de alto volumen.",
-                imageUrl: "https://i.imgur.com/jXjzpq9.jpeg"
+                imageUrl: "https://i.imgur.com/jXjzpq9.jpeg",
+                tags: ["Troubleshooting", "Sistemas Electromecánicos", "Trabajo bajo presión"]
             },
             {
-                title: "Operador de Mantenimiento (Versigent)",
+                title: "Operador de Mantenimiento",
+                date: "Versigent • 2023 - 2025",
                 briefDescription: "Responsable de la gestión técnica y mantenimiento en el área de Centro de Dados en un entorno industrial continuo.",
-                fullDescription: "Como Operador de Mantenimiento en Versigent (2023-2025), asumí la responsabilidad de la gestión operativa y el soporte técnico en el área de Centro de Dados. Colaboré de cerca con equipos multidisciplinarios para estabilizar procesos, desarrollando una profunda adaptabilidad técnica y sentando las bases analíticas para abordar el mantenimiento de sistemas electromecánicos complejos.",
-                imageUrl: "https://i.imgur.com/K3q6aVC.jpeg"
+                fullDescription: "Asumí la responsabilidad de la gestión operativa y el soporte técnico en el área de Centro de Dados. Colaboré de cerca con equipos multidisciplinarios para estabilizar procesos, desarrollando una profunda adaptabilidad técnica y sentando las bases analíticas para abordar el mantenimiento de sistemas electromecánicos complejos.",
+                imageUrl: "https://i.imgur.com/K3q6aVC.jpeg",
+                tags: ["Gestión Técnica", "Adaptabilidad", "Mantenimiento Preventivo"]
             },
             {
-                title: "Operador de Manufactura (Versigent)",
-                briefDescription: "Supervisión de calidad del producto final y aplicación de disciplina operativa en líneas de producción de arneses.",
-                fullDescription: "Inicié mi trayectoria en el sector industrial como Operador de Manufactura (2018-2023). Mi rol se centró en la supervisión de calidad y el cumplimiento estricto de los estándares del cliente final. Esta etapa forjó mi disciplina, atención meticulosa a los detalles y capacidad de trabajo en equipo, lo que me permitió asegurar promociones internas de manera sostenida.",
-                imageUrl: "https://i.imgur.com/DZFDJkN.jpeg"
+                title: "Operador de Manufactura",
+                date: "Versigent • 2018 - 2023",
+                briefDescription: "Supervisión de calidad del producto final y aplicación de disciplina operativa en líneas de producción.",
+                fullDescription: "Mi rol se centró en la supervisión de calidad y el cumplimiento estricto de los estándares del cliente final. Esta etapa forjó mi disciplina, atención meticulosa a los detalles y capacidad de trabajo en equipo, lo que me permitió asegurar promociones internas de manera sostenida.",
+                imageUrl: "https://i.imgur.com/DZFDJkN.jpeg",
+                tags: ["Control de Calidad", "Disciplina Operativa", "Trabajo en Equipo"]
             }
         ];
 
         const projects = [
             {
-                title: "Sistema MIRA (Mitigación Industrial Rápida y Avanzada)",
-                briefDescription: "Sistema IoT de alerta para líneas de producción integrando ESP32, Firebase y arquitectura móvil.",
-                fullDescription: "El Sistema MIRA fue diseñado como un proyecto integrador académico (2025) para monitorear paros de emergencia en tiempo real dentro de líneas de manufactura. Integré microcontroladores ESP32 estructurando la lógica de recolección de datos mediante C++ (Arduino IDE). Posteriormente, orquesté una aplicación móvil en Android Studio (utilizando web views en HTML/CSS/JS) y enlacé la infraestructura en la nube usando Firebase para la sincronización de bases de datos, utilizando Inteligencia Artificial como herramienta principal para la sintaxis y depuración del código.",
-                imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                title: "Sistema IoT MIRA",
+                date: "Proyecto Integrador • 2025",
+                briefDescription: "Plataforma de alerta para líneas de producción integrando ESP32, Firebase y arquitectura móvil.",
+                fullDescription: "El Sistema MIRA (Mitigación Industrial Rápida y Avanzada) fue diseñado para monitorear paros de emergencia en tiempo real. Integré microcontroladores ESP32 estructurando la lógica de recolección de datos en C++. Orquesté una aplicación móvil en Android Studio (HTML/CSS/JS) y enlacé la infraestructura usando Firebase para la sincronización de bases de datos. Utilicé Inteligencia Artificial como herramienta principal para la sintaxis y depuración de todo el código.",
+                imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                tags: ["ESP32 / C++", "Firebase", "App Móvil", "Integración IA"]
             },
             {
-                title: "Arquitectura Lógica y Prompt Engineering",
+                title: "Arquitectura & Prompt Engineering",
+                date: "Metodología de Desarrollo",
                 briefDescription: "Orquestación de código estructurado guiando de manera experta a motores de Inteligencia Artificial.",
-                fullDescription: "Mi enfoque tecnológico no reside en la escritura manual de líneas de código, sino en el rol de Arquitecto Lógico. Domino el arte del Prompt Engineering para guiar a modelos de IA avanzados en la generación, estructuración y depuración de soluciones en lenguajes como HTML, CSS, JavaScript y C++. Esto asegura un desarrollo acelerado, código limpio y me permite enfocar mi experiencia analítica exclusivamente en que la solución resuelva la problemática raíz.",
-                imageUrl: "https://i.imgur.com/aEc6IJf.jpeg"
+                fullDescription: "Mi enfoque tecnológico no reside en la escritura manual de líneas de código, sino en el rol de Arquitecto Lógico. Domino el arte del Prompt Engineering para guiar a modelos de IA en la generación y depuración de soluciones web y de software. Esto asegura un desarrollo acelerado y me permite enfocar mi experiencia analítica exclusivamente en diseñar una estructura que resuelva la problemática raíz.",
+                imageUrl: "https://i.imgur.com/aEc6IJf.jpeg",
+                tags: ["Prompt Engineering", "Lógica Estructural", "Low-Code"]
             },
             {
-                title: "Integración IoT (ESP32) y Electrónica",
+                title: "Integración IoT y Electrónica",
+                date: "Hardware Embebido",
                 briefDescription: "Diseño y despliegue de pruebas de concepto embebidas que conectan entornos físicos con la nube.",
-                fullDescription: "Cuento con experiencia directa en la parametrización, integración de sensores y despliegue de microcontroladores ESP32 (DevKit V1). Diseño ecosistemas electrónicos (IoT) desde la prueba de concepto en protoboard hasta el enlace con bases de datos remotas. Mi fortaleza radica en comprender cómo una señal de hardware se traduce eficientemente a un entorno web estructurado para la toma de decisiones.",
-                imageUrl: "https://i.imgur.com/sr96mZA.jpeg"
+                fullDescription: "Cuento con experiencia directa en la parametrización, integración de sensores y despliegue de microcontroladores ESP32 (DevKit V1). Diseño ecosistemas electrónicos desde la prueba de concepto en protoboard hasta el enlace con bases de datos remotas, comprendiendo exactamente cómo una señal de hardware se traduce a un entorno web estructurado para la toma de decisiones.",
+                imageUrl: "https://i.imgur.com/sr96mZA.jpeg",
+                tags: ["Microcontroladores", "Sensores", "Prototipado"]
             }
         ];
 
+        // Lógica de Renderizado y Modal
         const modal = document.getElementById('itemModal');
-        const closeBtn = modal.querySelector('button');
-
+        
         function renderCards(dataArray, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
-            dataArray.forEach(item => {
+            dataArray.forEach((item, index) => {
                 const card = document.createElement('div');
-                card.className = 'bg-dark rounded-xl overflow-hidden border border-slate-800 neon-border transition-all duration-300 cursor-pointer flex flex-col h-full';
+                // Añadida clase 'reveal' y delay escalonado para la animación de scroll
+                card.className = 'bg-[#0B1120] rounded-2xl overflow-hidden border border-slate-800 card-hover cursor-pointer flex flex-col h-full reveal';
+                card.style.transitionDelay = `${index * 100}ms`;
+                
+                // Renderizar tags para la tarjeta (máximo 2 para mantener diseño limpio)
+                const cardTags = item.tags.slice(0, 2).map(tag => 
+                    `<span class="text-xs font-semibold px-2.5 py-1 bg-slate-800 text-cyan-400 rounded-md border border-slate-700">${tag}</span>`
+                ).join('');
+
                 card.innerHTML = `
-                    <div class="h-48 overflow-hidden relative">
-                        <div class="absolute inset-0 bg-dark/20 z-10 hover:bg-transparent transition-all"></div>
-                        <img src="${item.imageUrl}" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    <div class="h-48 overflow-hidden relative border-b border-slate-800">
+                        <div class="absolute inset-0 bg-[#0B1120]/40 z-10 transition-colors group-hover:bg-transparent"></div>
+                        <img src="${item.imageUrl}" class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-slate-100 mb-3">${item.title}</h3>
-                        <p class="text-slate-400 text-sm flex-grow mb-6">${item.briefDescription}</p>
-                        <button class="text-cyan-400 text-sm font-semibold flex items-center gap-2 hover:text-cyan-300 w-fit">
-                            Ver Detalles <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                    <div class="p-6 flex flex-col flex-grow relative">
+                        <div class="text-cyan-500 text-xs font-bold tracking-wider uppercase mb-2">${item.date}</div>
+                        <h3 class="text-xl font-bold text-white mb-3 leading-tight">${item.title}</h3>
+                        <p class="text-slate-400 text-sm flex-grow mb-6 line-clamp-3">${item.briefDescription}</p>
+                        <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-800/50">
+                            ${cardTags}
+                        </div>
                     </div>
                 `;
                 card.addEventListener('click', () => openModal(item));
@@ -265,17 +334,51 @@
 
         function openModal(item) {
             document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-date').innerText = item.date;
             document.getElementById('modal-image').src = item.imageUrl;
             document.getElementById('modal-description').innerText = item.fullDescription;
-            modal.style.display = 'flex';
+            
+            // Inyectar todos los tags en el modal
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = item.tags.map(tag => 
+                `<span class="px-3 py-1 bg-cyan-500/10 text-cyan-400 text-sm font-medium rounded-lg border border-cyan-500/20">${tag}</span>`
+            ).join('');
+
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
         }
 
-        closeBtn.onclick = () => modal.style.display = 'none';
-        window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; }
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
 
+        document.getElementById('closeModalBtn').onclick = closeModal;
+        window.onclick = (e) => { if(e.target === modal) closeModal(); }
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+        });
+
+        // Animación al hacer Scroll (Intersection Observer)
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Solo animar una vez
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // Inicialización
         document.addEventListener('DOMContentLoaded', () => {
             renderCards(experiences, 'experience-container');
             renderCards(projects, 'projects-container');
+            initScrollAnimations();
         });
     </script>
 </body>
